@@ -1,0 +1,5 @@
+.*
+!.gitignore
+poetry.lock
+
+__pycache__/
