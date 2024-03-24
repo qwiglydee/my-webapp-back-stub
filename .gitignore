@@ -1,5 +1,7 @@
 .*
 !.gitignore
+!.dockerignore
+!.vscode
 poetry.lock
 
 __pycache__/
