@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1 class="display-3">Echo</h1>
+{% endblock %}
+
+{% block content %}
+<input id="inp" type="text" class="form-control">
+
+<div id="out" class="rounded border bg-ight"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    "use strict";
+    const inp = document.getElementById("inp");
+    const out = document.getElementById("out");
+    const sock = new WebSocket("{{ url_for('echosock') }}");
+
+    inp.addEventListener("change", function (event) {
+        sock.send(inp.value);
+        inp.value = '';
+        event.preventDefault();
+    });
+
+    sock.onmessage = function (event) {
+        out.appendChild(document.createTextNode(event.data))
+    };
+</script>
+{% endblock %}
